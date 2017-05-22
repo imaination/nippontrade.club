@@ -1,0 +1,58 @@
+brew doctor #fix any errors
+brew update
+brew install mysql
+unset TMPDIR
+
+#start, status, stop
+mysql.server start 
+mysql.server status
+mysql.server stop
+
+mysql -uroot #logged in as root user
+
+#create a database
+CREATE DATABASE nippon_trade
+CHARACTER SET utf8;
+
+#To see the existing databases
+SHOW DATABASES;
+
+#set up privaliges 
+GRANT ALL PRIVILEGES ON nippon_trade.* TO 'nippontrade'@'localhost' IDENTIFIED BY 'nippontrade';
+
+SELECT USER, HOST FROM mysql.user;
+
+#To use a database
+USE nippon_trade;
+
+#Can see selected database
+SELECT DATABASE();
+
+#Create a table
+
+#To see what's inside
+SHOW TABLES;
+
+CREATE TABLE `nippon_trade`.`hs2_infos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `hs2_code` INT NOT NULL,
+  `hs2_name` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+ #Load a csv file 
+ LOAD DATA LOCAL INFILE 'hs2_eng.csv' INTO TABLE hs2_infos
+ FIELDS TERMINATED BY ','
+ LINES TERMINATED BY '\r\n'
+ IGNORE 1 LINES
+(hs2_codes,hs2_names);
+
+
+
+
+
+#to see if mysql server is running already
+ps aux | grep mysql
+
+#Links for reference
+https://coderwall.com/p/os6woq/uninstall-all-those-broken-versions-of-mysql-and-re-install-it-with-brew-on-mac-mavericks
+https://dev.mysql.com/doc/refman/5.7/en/grant.html#grant-database-privileges
