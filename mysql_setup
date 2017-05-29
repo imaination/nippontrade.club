@@ -46,12 +46,28 @@ CREATE TABLE `nippon_trade`.`hs2_infos` (
  IGNORE 1 LINES
 (hs2_codes,hs2_names);
 
+#to see what was inserted
+SELECT * FROM hs2_infos;
 
+#to delete all contents from the table w/o deleting the table
+delete from nippontrade_hs2_infos; 
 
+#to reset auto increment use truncate rather then deleting rows
+TRUNCATE hs2_infos;
+
+#to use columns from two different csv files make a temporary table
+1)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/csv_files/Country.csv' INTO TABLE nippontrade_Countries FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (country_code, country_name_ja, area_name);
+2)CREATE TEMPORARY TABLE temp_table LIKE nippontrade_countries;
+3)SHOW INDEX FROM temp_table;
+4)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/csv_files/country_eng.csv' INTO TABLE temp_table FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (@ignore, country_name_eng, @ignore, @ignore);
+5)UPDATE nippontrade_Countries JOIN temp_table ON nippontrade_Countries.id = temp_table.id SET nippontrade_Countries.country_name_eng = temp_table.country_name_eng;
 
 
 #to see if mysql server is running already
 ps aux | grep mysql
+
+
+
 
 #Links for reference
 https://coderwall.com/p/os6woq/uninstall-all-those-broken-versions-of-mysql-and-re-install-it-with-brew-on-mac-mavericks
