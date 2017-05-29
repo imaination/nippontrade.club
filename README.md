@@ -16,7 +16,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nippon_trade',
         'USER': 'nippontrade',
-        'PASSWORD': 'nippontrade',
+        'PASSWORD': '**************',
         'HOST': 'localhost',
         'PORT': '3306',
     }
