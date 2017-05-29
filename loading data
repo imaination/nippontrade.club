@@ -1,0 +1,14 @@
+#commands inside django
+python manage.py shell
+
+from nippontrade.models import hs2_infos
+from django.db import connection
+
+hs2_infos.objects.all()
+cursor = connection.cursor()
+
+statement = "LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/csv_files/hs2_eng.csv' INTO TABLE hs2_infos FIELDS TERMINATED BY ',' IGNORE 1 LINES;"
+hs2_inserted = cursor.execute(statement)
+
+error 1148 'The used command is not allowed with this MYSQL version'
+
