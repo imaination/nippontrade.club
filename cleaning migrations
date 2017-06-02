@@ -1,0 +1,13 @@
+#Remove migrations file
+
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc"  -delete
+
+python manage.py showmigrations
+
+python manage.py makemigrations
+
+python manage.py migrate --fake-initial
+
+#reference link 
+https://simpleisbetterthancomplex.com/tutorial/2016/07/26/how-to-reset-migrations.html
