@@ -67,7 +67,8 @@ TRUNCATE hs2_infos;
 ps aux | grep mysql
 
 
-
+#mypath
+'~/Desktop/Internship/project1/develop/nippontrade/csv_files/Country.csv'
 
 #Links for reference
 https://coderwall.com/p/os6woq/uninstall-all-those-broken-versions-of-mysql-and-re-install-it-with-brew-on-mac-mavericks
