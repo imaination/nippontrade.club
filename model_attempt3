@@ -1,0 +1,83 @@
+from django.db import models
+
+
+# Create your models here.
+# template of how to store data
+
+class Countries(models.Model):
+    country_code = models.IntegerField()
+    country_name_ja = models.CharField(max_length=50)
+    country_name_eng = models.CharField(max_length=50)
+    area_name = models.CharField(max_length=50)
+
+
+class Customs(models.Model):
+    custom_code = models.IntegerField()
+    custom_name = models.CharField(max_length=100)
+
+
+class Hs2Infos(models.Model):
+    hs2_code = models.IntegerField()
+    hs2_name = models.CharField(max_length=1000)
+
+
+class Hs4Infos(models.Model):
+    hs4_code = models.IntegerField()
+    hs4_name = models.CharField(max_length=1000)
+
+
+class Hs6Infos(models.Model):
+    hs6_code = models.IntegerField()
+    hs6_name = models.CharField(max_length=1000)
+
+
+class Hs9Infos(models.Model):
+    hs9_code = models.IntegerField()
+    hs9_name = models.CharField(max_length=5000, null=True)
+
+'''
+
+class Presents(models.Model):
+    countries = models.ForeignKey(Countries, on_delete=models.CASCADE, null=True, blank=True)
+    customs = models.ForeignKey(Customs, on_delete=models.CASCADE, null=True, blank=True)
+    hs2_infos = models.ForeignKey(hs2_infos, on_delete=models.CASCADE, null=True, blank=True)
+    hs4_infos = models.ForeignKey(hs4_infos, on_delete=models.CASCADE, null=True, blank=True)
+    hs6_infos = models.ForeignKey(hs6_infos, on_delete=models.CASCADE, null=True, blank=True)
+    hs9_infos = models.ForeignKey(hs9_infos, on_delete=models.CASCADE, null=True, blank=True)
+    export_import = models.IntegerField(null=True)
+    customs_code = models.IntegerField(null=True)
+    year = models.IntegerField(null=True)
+    month = models.IntegerField(null=True)
+    country_code = models.IntegerField(null=True)
+    unit1 = models.CharField(max_length=50, null=True)
+    unit2 = models.CharField(max_length=50, null=True)
+    hs2 = models.IntegerField(null=True)
+    hs4 = models.IntegerField(null=True)
+    hs6 = models.IntegerField(null=True)
+    hs9 = models.IntegerField(null=True)
+    quantity1 = models.IntegerField(null=True)
+    quantity2 = models.IntegerField(null=True)
+    value_year = models.IntegerField(null=True)
+
+class Pasts(models.Model):
+    countries = models.ForeignKey(Countries, on_delete=models.CASCADE, null=True, blank=True)
+    customs = models.ForeignKey(Customs, on_delete=models.CASCADE, null=True, blank=True)
+    hs2_info = models.ForeignKey(hs2_infos, on_delete=models.CASCADE, null=True, blank=True)
+    hs4_info = models.ForeignKey(hs4_infos, on_delete=models.CASCADE, null=True, blank=True)
+    hs6_info = models.ForeignKey(hs6_infos, on_delete=models.CASCADE, null=True, blank=True)
+    hs9_info = models.ForeignKey(hs9_infos, on_delete=models.CASCADE, null=True, blank=True)
+    export_import = models.IntegerField(null=True)
+    year = models.IntegerField(null=True)
+    country_code = models.IntegerField(null=True)
+    unit1 = models.CharField(max_length=50, null=True)
+    unit2 = models.CharField(max_length=50, null=True)
+    quantity1 = models.IntegerField(null=True)
+    quantity2 = models.IntegerField(null=True)
+    value_year = models.IntegerField(null=True)
+    hs2 = models.IntegerField(null=True)
+    hs4 = models.IntegerField(null=True)
+    hs6 = models.IntegerField(null=True)
+    hs9 = models.IntegerField(null=True)
+
+
+'''
