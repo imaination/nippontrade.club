@@ -1,0 +1,59 @@
+#drop the database, privalideges are not dropped
+DROP DATABASE nippon_trade;
+
+#create database
+CREATE DATABASE nippon_trade 
+CHARACTER SET utf8;
+
+#show
+SHOW DATABASES;
+
+#from django 
+python manage.py makemigrations
+python manage.py migrate
+
+ #Load a csv file 
+ LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/hs2_eng.csv' INTO TABLE nippontrade_hs2infos
+ FIELDS TERMINATED BY ','
+ LINES TERMINATED BY '\n'
+ IGNORE 1 LINES
+(hs2_code,hs2_name);
+
+#to see what was inserted
+SELECT * FROM hs2_infos;
+
+#to delete all contents from the table w/o deleting the table
+delete from nippontrade_hs2_infos; 
+
+#to reset auto increment use truncate rather then deleting rows
+TRUNCATE hs2_infos;
+
+#to use columns from two different csv files make a temporary table
+1)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/Country.csv' INTO TABLE nippontrade_Countries FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (country_code, country_name_ja, area_name);
+2)CREATE TEMPORARY TABLE temp_table LIKE nippontrade_countries;
+3)SHOW INDEX FROM temp_table;
+4)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/country_eng.csv' INTO TABLE temp_table FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (@ignore, country_name_eng, @ignore, @ignore);
+5)UPDATE nippontrade_Countries JOIN temp_table ON nippontrade_Countries.id = temp_table.id SET nippontrade_Countries.country_name_eng = temp_table.country_name_eng;
+
+#Load Customs data
+LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/custom.csv' INTO TABLE nippontrade_hs2infos FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (custom_code, custom_name);
+
+#Load Hs4Infos
+LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/hs4_eng.csv' INTO TABLE nippontrade_hs4infos FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (hs4_code, hs4_name);
+
+#Load Hs6Infos
+LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/hs6_eng.csv' INTO TABLE nippontrade_hs6infos FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (hs6_code, hs6_name);
+
+#Load Hs9Infos
+LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/hs9_eng.csv' INTO TABLE nippontrade_hs9infos FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (hs9_code, hs9_name);
+
+#to see if mysql server is running already
+ps aux | grep mysql
+
+
+#mypath
+'~/Desktop/Internship/project1/develop/nippontrade/csv_files/Country.csv'
+
+#Links for reference
+https://coderwall.com/p/os6woq/uninstall-all-those-broken-versions-of-mysql-and-re-install-it-with-brew-on-mac-mavericks
+https://dev.mysql.com/doc/refman/5.7/en/grant.html#grant-database-privileges
