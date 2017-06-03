@@ -36,7 +36,7 @@ TRUNCATE hs2_infos;
 5)UPDATE nippontrade_Countries JOIN temp_table ON nippontrade_Countries.id = temp_table.id SET nippontrade_Countries.country_name_eng = temp_table.country_name_eng;
 
 #Load Customs data
-LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/custom.csv' INTO TABLE nippontrade_hs2infos FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (custom_code, custom_name);
+LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/custom.csv' INTO TABLE nippontrade_customs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (custom_code, custom_name);
 
 #Load Hs4Infos
 LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/hs4_eng.csv' INTO TABLE nippontrade_hs4infos FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (hs4_code, hs4_name);
