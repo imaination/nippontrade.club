@@ -29,12 +29,13 @@ delete from nippontrade_hs2_infos;
 TRUNCATE hs2_infos;
 
 #to use columns from two different csv files make a temporary table
-1)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/Country.csv' INTO TABLE nippontrade_Countries FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (country_code, country_name_ja, area_name);
+1)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/Country.csv' INTO TABLE nippontrade_countries FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (country_code, country_name_ja, area_name);
 2)CREATE TEMPORARY TABLE temp_table LIKE nippontrade_countries;
 3)SHOW INDEX FROM temp_table;
 4)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/country_eng.csv' INTO TABLE temp_table FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (@ignore, country_name_eng, @ignore, @ignore);
 5)UPDATE nippontrade_Countries JOIN temp_table ON nippontrade_Countries.id = temp_table.id SET nippontrade_Countries.country_name_eng = temp_table.country_name_eng;
-
+6)ALTER TABLE nippontrade_countries DROP COLUMN id;
+7)
 #Load Customs data
 LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/custom.csv' INTO TABLE nippontrade_customs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (custom_code, custom_name);
 
@@ -70,3 +71,9 @@ ps aux | grep mysql
 #Links for reference
 https://coderwall.com/p/os6woq/uninstall-all-those-broken-versions-of-mysql-and-re-install-it-with-brew-on-mac-mavericks
 https://dev.mysql.com/doc/refman/5.7/en/grant.html#grant-database-privileges
+
+
+#tempoararily remove the pk and use the id as auto incremented pk
+#combine tables
+#alter to set primary key back again
+
