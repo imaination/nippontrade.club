@@ -1,0 +1,5 @@
+CREATE DATABASE nippon_trade 
+CHARACTER SET utf8;
+
+SHOW DATABASES;
+
