@@ -34,8 +34,8 @@ TRUNCATE hs2_infos;
 3)SHOW INDEX FROM temp_table;
 4)LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/country_eng.csv' INTO TABLE temp_table FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (@ignore, country_name_eng, @ignore, @ignore);
 5)UPDATE nippontrade_Countries JOIN temp_table ON nippontrade_Countries.id = temp_table.id SET nippontrade_Countries.country_name_eng = temp_table.country_name_eng;
-6)ALTER TABLE nippontrade_countries DROP COLUMN id;
-7)
+6)in django's models.py, add primary_key=True for country_code and then it will drop id column and make country_code the primary key
+
 #Load Customs data
 LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/custom.csv' INTO TABLE nippontrade_customs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (custom_code, custom_name);
 
