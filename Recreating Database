@@ -50,7 +50,7 @@ LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_fi
 #set foreign key checks to 0
 SET FOREIGN_KEY_CHECKS = 0;
 #Load Presents
-LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/ym_custom_latest.csv' INTO TABLE nippontrade_Presents FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (export_import, customs_code, year, month, country, unit1, unit2, hs2, hs4, hs6, hs9, quantity1, quantity2, value_year);
+LOAD DATA LOCAL INFILE '~/Desktop/Internship/project1/develop/nippontrade/csv_files/ym_custom_latest.csv' INTO TABLE nippontrade_Presents FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES (export_import, customs_code, year, month, country_code, unit1, unit2, hs2, hs4, hs6, hs9, quantity1, quantity2, value_year);
 
 
 #to see if mysql server is running already
